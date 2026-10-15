@@ -8,7 +8,7 @@
 
 一个独立维护的单校校园主题插件，支持九龙湖与四牌楼两种风景，跟随宿主浅色、深色和系统外观。与东南大学及 DeepSeek 官方无隶属或背书关系。
 
-![浅色主题，开启可选叮东](docs/screenshots/v0.3/light-mascot.jpg)
+![浅色主题，开启可选叮东](https://raw.githubusercontent.com/xinyang20/dsh-campus-seu/main/docs/screenshots/v0.3/light-mascot.jpg)
 
 截图开启了可选叮东，安装后的默认值为关闭。截图中的摄影与角色素材说明见 [素材来源](ATTRIBUTION.md)。
 
@@ -24,11 +24,11 @@
 <details>
 <summary>查看深色、窄窗口和设置效果</summary>
 
-![深色主题](docs/screenshots/v0.3/dark-mascot.jpg)
+![深色主题](https://raw.githubusercontent.com/xinyang20/dsh-campus-seu/main/docs/screenshots/v0.3/dark-mascot.jpg)
 
-<img src="docs/screenshots/v0.3/dark-narrow.jpg" alt="窄窗口深色主题" width="390">
+<img src="https://raw.githubusercontent.com/xinyang20/dsh-campus-seu/main/docs/screenshots/v0.3/dark-narrow.jpg" alt="窄窗口深色主题" width="390">
 
-![主题设置](docs/screenshots/v0.3/settings-mascot.jpg)
+![主题设置](https://raw.githubusercontent.com/xinyang20/dsh-campus-seu/main/docs/screenshots/v0.3/settings-mascot.jpg)
 
 </details>
 
@@ -91,7 +91,7 @@ pnpm pack --pack-destination .runtime/dist
 
 本版本基于 DSH Web `0.2.0-rc.2` 的主题 API 与插槽。欢迎卡扩展了 `conversation.hero.brand.mark` 品牌插槽的布局；升级宿主后需重新检查外观。其他插件同时占用该插槽或覆盖相同颜色时，显示受优先级与覆盖顺序影响。
 
-当前自动测试涵盖设置持久化、输入校验、素材路由边界及外观清理生命周期。真实 DSH 中的浅色、深色、窄窗口和设置交互记录见 [界面验证记录](docs/VALIDATION.md)。这些检查不包含模型回答质量或所有第三方插件组合。
+当前自动测试涵盖设置持久化、输入校验、素材路由边界及外观清理生命周期。真实 DSH 中的浅色、深色、窄窗口和设置交互记录见 [界面验证记录](https://github.com/xinyang20/dsh-campus-seu/blob/main/docs/VALIDATION.md)。这些检查不包含模型回答质量或所有第三方插件组合。
 
 ## 开源与素材
 
@@ -99,4 +99,4 @@ pnpm pack --pack-destination .runtime/dist
 
 完整范围见 [NOTICE.md](NOTICE.md)、[素材来源与署名](ATTRIBUTION.md) 和 [叮东生成记录](docs/dingdong-generation.md)。界面截图中出现的素材同样适用这些说明。
 
-仓库使用 `dsh` 和官方约定的 `dsh-plugin` topics。打包遵循 [DSH 插件发布文档](https://deepseek-harness.github.io/deepseek-harness/develop/basic/publish)，发现规则见 [DSH README](https://github.com/deepseek-ai/deepseek-harness#community--support)。
+仓库使用 `dsh` 和官方约定的 `dsh-plugin` topics。打包遵循 [DSH 插件发布文档](https://deepseek-harness.github.io/deepseek-harness/develop/basic/publish)，发现规则见 [DSH README](https://github.com/deepseek-ai/deepseek-harness#community-and-support)。
