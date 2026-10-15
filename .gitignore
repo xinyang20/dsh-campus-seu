@@ -1,0 +1,11 @@
+node_modules/
+.runtime/
+.cache/
+*.tgz
+.DS_Store
+.env
+.env.*
+!.env.example
+# Keep old local review screenshots out of the public release.
+docs/screenshots/*
+!docs/screenshots/v0.3/
