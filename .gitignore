@@ -9,3 +9,4 @@ node_modules/
 # Keep old local review screenshots out of the public release.
 docs/screenshots/*
 !docs/screenshots/v0.3/
+!docs/screenshots/v0.3.1/

@@ -1,6 +1,6 @@
 {
   "name": "dsh-campus-seu",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Southeast University campus theme for DeepSeek Harness Web.",
   "type": "module",
@@ -35,15 +35,15 @@
     "dsh": "node scripts/dsh.mjs"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "~4.0.4",
-    "@deepseek-ai/dsh-host-webserver": "0.2.0-rc.2",
-    "@deepseek-ai/dsh-client-connection": "0.2.0-rc.2"
+    "@deepseek-ai/cordis": "~4.0.5",
+    "@deepseek-ai/dsh-host-webserver": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-client-connection": "0.2.1-rc.2"
   },
   "devDependencies": {
-    "@deepseek-ai/cordis": "4.0.4",
-    "@deepseek-ai/dsh": "0.2.0-rc.2",
-    "@deepseek-ai/dsh-host-webserver": "0.2.0-rc.2",
-    "@deepseek-ai/dsh-client-connection": "0.2.0-rc.2",
+    "@deepseek-ai/cordis": "4.0.5",
+    "@deepseek-ai/dsh": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-host-webserver": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-client-connection": "0.2.1-rc.2",
     "esbuild": "0.25.12",
     "react": "18.3.1"
   },

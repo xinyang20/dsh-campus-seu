@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/xinyang20/dsh-campus-seu/actions/workflows/ci.yml/badge.svg)](https://github.com/xinyang20/dsh-campus-seu/actions/workflows/ci.yml)
 [![Code license: MIT](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE)
-[![DSH 0.2.0-rc.2](https://img.shields.io/badge/DSH-0.2.0--rc.2-blue.svg)](https://github.com/deepseek-ai/deepseek-harness)
+[![DSH 0.2.1-rc.2](https://img.shields.io/badge/DSH-0.2.1--rc.2-blue.svg)](https://github.com/deepseek-ai/deepseek-harness)
 
 把东南大学的校园绿、校训、建筑与叮东带进 DSH Web。
 
@@ -34,12 +34,12 @@
 
 ## 安装
 
-兼容 **DSH Web `0.2.0-rc.2`**。CLI/TUI 不适用。先确认 `dsh --version`，并将下面的 `YOUR_PROFILE` 替换为你正在使用的 Web profile 名称。
+`v0.3.1` 兼容 **DSH Web `0.2.1-rc.2`**；仍使用 DSH `0.2.0-rc.2` 时，请安装 [v0.3.0](https://github.com/xinyang20/dsh-campus-seu/releases/tag/v0.3.0)。CLI/TUI 不适用。先确认 `dsh --version`，并将下面的 `YOUR_PROFILE` 替换为你正在使用的 Web profile 名称。
 
 推荐从 [Releases](https://github.com/xinyang20/dsh-campus-seu/releases) 安装预构建包，无需在用户机器编译：
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add https://github.com/xinyang20/dsh-campus-seu/releases/download/v0.3.0/dsh-campus-seu-0.3.0.tgz --ignore-scripts
+dsh plugin --profile YOUR_PROFILE add https://github.com/xinyang20/dsh-campus-seu/releases/download/v0.3.1/dsh-campus-seu-0.3.1.tgz --ignore-scripts
 ```
 
 安装后重新启动该 profile 的 DSH Web 并刷新浏览器，在「设置 → 校园主题(SEU)」中调整。校园主题默认启用，叮东默认关闭。
@@ -47,7 +47,7 @@ dsh plugin --profile YOUR_PROFILE add https://github.com/xinyang20/dsh-campus-se
 也可下载 Release 的 `.tgz` 后安装本地文件：
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add ./dsh-campus-seu-0.3.0.tgz --ignore-scripts
+dsh plugin --profile YOUR_PROFILE add ./dsh-campus-seu-0.3.1.tgz --ignore-scripts
 ```
 
 卸载后同样重新启动 DSH Web：
@@ -55,6 +55,8 @@ dsh plugin --profile YOUR_PROFILE add ./dsh-campus-seu-0.3.0.tgz --ignore-script
 ```sh
 dsh plugin --profile YOUR_PROFILE remove dsh-campus-seu
 ```
+
+升级已安装的旧版时，对同一 profile 再次执行上面的 `add` 命令即可替换包；安装后重新启动 DSH Web 并刷新浏览器。
 
 ## 使用与数据
 
@@ -89,9 +91,9 @@ pnpm pack --pack-destination .runtime/dist
 
 ## 兼容性与验证
 
-本版本基于 DSH Web `0.2.0-rc.2` 的主题 API 与插槽。欢迎卡扩展了 `conversation.hero.brand.mark` 品牌插槽的布局；升级宿主后需重新检查外观。其他插件同时占用该插槽或覆盖相同颜色时，显示受优先级与覆盖顺序影响。
+本版本基于 DSH Web `0.2.1-rc.2` 的主题 API 与插槽。欢迎卡扩展了 `conversation.hero.brand.mark` 品牌插槽的布局；升级宿主后需重新检查外观。其他插件同时占用该插槽或覆盖相同颜色时，显示受优先级与覆盖顺序影响。
 
-当前自动测试涵盖设置持久化、输入校验、素材路由边界及外观清理生命周期。真实 DSH 中的浅色、深色、窄窗口和设置交互记录见 [界面验证记录](https://github.com/xinyang20/dsh-campus-seu/blob/main/docs/VALIDATION.md)。这些检查不包含模型回答质量或所有第三方插件组合。
+当前自动测试涵盖 DSH 官方兼容性检查、设置持久化、输入校验、素材路由边界及外观清理生命周期。真实 DSH 中的浅色、深色、窄窗口和设置交互记录见 [界面验证记录](https://github.com/xinyang20/dsh-campus-seu/blob/main/docs/VALIDATION.md)。这些检查不包含模型回答质量或所有第三方插件组合。
 
 ## 开源与素材
 
