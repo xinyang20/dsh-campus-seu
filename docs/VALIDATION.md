@@ -14,7 +14,8 @@
 | rc.3 浏览器 | 校园欢迎卡、浅色和深色、设置入口、校区切换、叮东显示正常；图片均成功解码 |
 | rc.3 主题启停 | 关闭时菜单装饰样式数为 0，重新启用后为 1；未记录浏览器 error 日志 |
 | 打包 | `pnpm pack --pack-destination .runtime/dist` 成功生成候选安装包 |
-| GitHub Actions | 已配置 rc.2 / rc.3 测试矩阵；本轮未触发远端 CI |
+| GitHub Actions | [公开 CI](https://github.com/xinyang20/dsh-campus-seu/actions/runs/40530818159) 的 rc.2、rc.3 两个任务均通过，包含构建、测试、客户端产物一致性和打包检查 |
+| GitHub 默认分支安装 | 使用 `github:xinyang20/dsh-campus-seu` 实际安装到 rc.3 隔离 profile，取得版本 0.3.2；宿主启动、客户端发现及四个认证素材路由通过 |
 
 `0.2.1` 稳定版及其他未发布版本只完成范围匹配测试，没有实际宿主运行验证。本次未调用真实模型，也未复验窄窗口、用户图片替换和所有第三方插件组合；这些场景的历史记录保留在下方。
 
