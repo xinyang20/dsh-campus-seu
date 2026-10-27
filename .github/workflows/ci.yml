@@ -13,6 +13,9 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    strategy:
+      matrix:
+        dsh: ['0.2.1-rc.2', '0.2.1-rc.3']
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
@@ -33,6 +36,10 @@ jobs:
 
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Select compatibility runtime
+        if: matrix.dsh != '0.2.1-rc.3'
+        run: pnpm add --save-dev --save-exact @deepseek-ai/dsh@${{ matrix.dsh }} @deepseek-ai/dsh-host-webserver@${{ matrix.dsh }} @deepseek-ai/dsh-client-connection@${{ matrix.dsh }} --ignore-scripts --lockfile=false
 
       - name: Build and test
         run: pnpm run check
