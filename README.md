@@ -34,21 +34,18 @@
 
 ## 安装
 
-当前源码版本 `v0.3.2` 声明支持 **DSH Web `>=0.2.1-rc.2 <0.2.2-0`**，覆盖 `0.2.1-rc.2`、`0.2.1-rc.3` 和同一 `0.2.1` 系列的后续版本；`0.2.2`（包括其预发布版）需重新验证后适配。CLI/TUI 不适用。先确认 `dsh --version`，并将下面的 `YOUR_PROFILE` 替换为你正在使用的 Web profile 名称。
+`v0.3.2` 声明支持 **DSH Web `>=0.2.1-rc.2 <0.2.2-0`**，覆盖 `0.2.1-rc.2`、`0.2.1-rc.3` 和同一 `0.2.1` 系列的后续版本；`0.2.2`（包括其预发布版）需重新验证后适配。CLI/TUI 不适用。先确认 `dsh --version`，并将下面的 `YOUR_PROFILE` 替换为你正在使用的 Web profile 名称。
 
-`v0.3.2` 尚未发布 Release，可在当前源码目录构建后安装：
+推荐从 [v0.3.2 Release](https://github.com/xinyang20/dsh-campus-seu/releases/tag/v0.3.2) 安装预构建包，无需在用户机器编译：
 
 ```sh
-pnpm install --frozen-lockfile --ignore-scripts
-pnpm run check
-pnpm pack --pack-destination .runtime/dist
-dsh plugin --profile YOUR_PROFILE add ./.runtime/dist/dsh-campus-seu-0.3.2.tgz --ignore-scripts
+dsh plugin --profile YOUR_PROFILE add https://github.com/xinyang20/dsh-campus-seu/releases/download/v0.3.2/dsh-campus-seu-0.3.2.tgz --ignore-scripts
 ```
 
-已发布的 [v0.3.1](https://github.com/xinyang20/dsh-campus-seu/releases/tag/v0.3.1) 适用于 DSH `0.2.1-rc.2`，可直接安装预构建包：
+也可从 GitHub 安装，固定 tag 可避免继续使用旧版本的安装来源：
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add https://github.com/xinyang20/dsh-campus-seu/releases/download/v0.3.1/dsh-campus-seu-0.3.1.tgz --ignore-scripts
+dsh plugin --profile YOUR_PROFILE add github:xinyang20/dsh-campus-seu#v0.3.2 --ignore-scripts
 ```
 
 安装后重新启动该 profile 的 DSH Web 并刷新浏览器，在「设置 → 校园主题(SEU)」中调整。校园主题默认启用，叮东默认关闭。
@@ -56,7 +53,7 @@ dsh plugin --profile YOUR_PROFILE add https://github.com/xinyang20/dsh-campus-se
 也可下载 Release 的 `.tgz` 后安装本地文件：
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add ./dsh-campus-seu-0.3.1.tgz --ignore-scripts
+dsh plugin --profile YOUR_PROFILE add ./dsh-campus-seu-0.3.2.tgz --ignore-scripts
 ```
 
 卸载后同样重新启动 DSH Web：
@@ -65,7 +62,7 @@ dsh plugin --profile YOUR_PROFILE add ./dsh-campus-seu-0.3.1.tgz --ignore-script
 dsh plugin --profile YOUR_PROFILE remove dsh-campus-seu
 ```
 
-升级到源码修复版时，对同一 profile 执行本地 `dsh-campus-seu-0.3.2.tgz` 的 `add` 命令即可替换包；安装后重新启动 DSH Web 并刷新浏览器。
+升级已安装的旧版时，对同一 profile 执行上面的 Release 或 GitHub tag 安装命令即可替换包；安装后重新启动 DSH Web 并刷新浏览器。通过界面安装时，可填写 `github:xinyang20/dsh-campus-seu#v0.3.2`。
 
 ## 使用与数据
 
