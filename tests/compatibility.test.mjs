@@ -14,7 +14,7 @@ test('the release manifest passes the installed DSH compatibility gate without e
   assert.equal(evaluatePluginCompatibility(manifest), undefined);
 });
 
-for (const runtimeVersion of ['0.2.1-rc.2', '0.2.1-rc.3', '0.2.1']) {
+for (const runtimeVersion of ['0.2.1-rc.2', '0.2.1-rc.3', '0.2.1', '0.2.2-rc.1', '0.2.2']) {
   test(`the declared support range admits ${runtimeVersion} through both engines and peers`, () => {
     assert.equal(evaluatePluginCompatibility(manifest, {}, runtimeVersion), undefined);
     const peerManifest = { ...manifest, engines: { node: manifest.engines.node } };
@@ -22,7 +22,7 @@ for (const runtimeVersion of ['0.2.1-rc.2', '0.2.1-rc.3', '0.2.1']) {
   });
 }
 
-for (const runtimeVersion of ['0.2.0-rc.2', '0.2.1-rc.1', '0.2.2-alpha.1', '0.2.2', '0.3.0']) {
+for (const runtimeVersion of ['0.2.0-rc.2', '0.2.1-rc.1', '0.2.2-alpha.1', '0.2.3-alpha.1', '0.2.3', '0.3.0']) {
   test(`the declared support range rejects ${runtimeVersion} without exemptions`, () => {
     const issue = evaluatePluginCompatibility(manifest, {}, runtimeVersion);
     assert.ok(issue);
@@ -31,6 +31,18 @@ for (const runtimeVersion of ['0.2.0-rc.2', '0.2.1-rc.1', '0.2.2-alpha.1', '0.2.
     assert.ok(evaluatePluginCompatibility(peerManifest, {}, runtimeVersion));
   });
 }
+
+test('the DSH gate reproduces v0.3.2 being rejected on 0.2.2-rc.1', () => {
+  const legacy = {
+    name: manifest.name,
+    version: '0.3.2',
+    engines: { dsh: '>=0.2.1-rc.2 <0.2.2-0' },
+  };
+  const issue = evaluatePluginCompatibility(legacy, {}, '0.2.2-rc.1');
+  assert.ok(issue);
+  assert.deepEqual(issue.requirements, { 'engines.dsh': legacy.engines.dsh });
+  assert.equal(issue.exempted, false);
+});
 
 test('the DSH gate reproduces v0.3.1 being rejected on rc.3', () => {
   const legacy = {
