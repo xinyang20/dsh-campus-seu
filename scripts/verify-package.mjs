@@ -5,13 +5,17 @@ import path from 'node:path';
 import { env, root } from './run.mjs';
 
 const manifest = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
-const runtimeDirectory = path.join(root, 'node_modules/@deepseek-ai/dsh');
+const runtimeDirectory = path.resolve(root, process.argv[3] ?? 'node_modules/@deepseek-ai/dsh');
 const runtime = JSON.parse(await readFile(path.join(runtimeDirectory, 'package.json'), 'utf8'));
-assert.equal(runtime.version, manifest.devDependencies['@deepseek-ai/dsh']);
+assert.equal(runtime.name, '@deepseek-ai/dsh');
+if (!process.argv[3]) assert.equal(runtime.version, manifest.devDependencies['@deepseek-ai/dsh']);
 const cli = path.join(runtimeDirectory, runtime.bin.dsh);
-let archive = path.resolve(root, process.argv[2] ?? `.runtime/dist/${manifest.name}-${manifest.version}.tgz`);
-if ((await stat(archive)).isDirectory()) archive = path.join(archive, `${manifest.name}-${manifest.version}.tgz`);
-await access(archive);
+let source = process.argv[2] ?? `.runtime/dist/${manifest.name}-${manifest.version}.tgz`;
+if (!source.startsWith('github:') && !source.startsWith('https://')) {
+  source = path.resolve(root, source);
+  if ((await stat(source)).isDirectory()) source = path.join(source, `${manifest.name}-${manifest.version}.tgz`);
+  await access(source);
+}
 await mkdir(path.join(root, '.runtime/package-check'), { recursive: true });
 const directory = await mkdtemp(path.join(root, '.runtime/package-check/run-'));
 const environment = { ...env, DSH_HOME: path.join(directory, 'home') };
@@ -36,7 +40,7 @@ async function run(args) {
 }
 
 await run(['--profile', profile, '--from-default-profile', 'web', '--dump-config']);
-await run(['plugin', '--profile', profile, 'add', archive, '--ignore-scripts']);
+await run(['plugin', '--profile', profile, 'add', source, '--ignore-scripts']);
 const profileDirectory = path.join(environment.DSH_HOME, 'profiles', profile);
 const installedDirectory = path.join(profileDirectory, 'node_modules', manifest.name);
 const installed = JSON.parse(await readFile(path.join(installedDirectory, 'package.json'), 'utf8'));

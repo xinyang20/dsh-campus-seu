@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/xinyang20/dsh-campus-seu/actions/workflows/ci.yml/badge.svg)](https://github.com/xinyang20/dsh-campus-seu/actions/workflows/ci.yml)
 [![Code license: MIT](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE)
-[![DSH 0.2.1 / 0.2.2](https://img.shields.io/badge/DSH-0.2.1%20%2F%200.2.2-blue.svg)](https://github.com/deepseek-ai/deepseek-harness)
+[![DSH 0.2.1 / 0.2.2 / 0.2.3-alpha.2](https://img.shields.io/badge/DSH-0.2.1%20%2F%200.2.2%20%2F%200.2.3--alpha.2-blue.svg)](https://github.com/deepseek-ai/deepseek-harness)
 
 把东南大学的校园绿、校训、建筑与叮东带进 DSH Web。
 
@@ -34,18 +34,18 @@
 
 ## 安装
 
-`v0.3.3` 声明支持 **DSH Web `>=0.2.1-rc.2 <0.2.2-0 || >=0.2.2-rc.1 <0.2.3-0`**，保留 `0.2.1` 系列支持，并新增 `0.2.2-rc.1` 及同一 `0.2.2` 系列的兼容范围。`0.2.2` 的早期预发布版及 `0.2.3` 需重新验证后适配。CLI/TUI 不适用。先确认 `dsh --version`，并将下面的 `YOUR_PROFILE` 替换为你正在使用的 Web profile 名称。
+插件 `v0.3.4` 新增对 **DSH Web `0.2.3-alpha.2`** 的支持，并继续支持 `0.2.1-rc.2` 起的 `0.2.1` 系列及 `0.2.2-rc.1` 起的 `0.2.2` 系列。CLI/TUI 不适用。先确认 `dsh --version`，并将下面的 `YOUR_PROFILE` 替换为你正在使用的 Web profile 名称。
 
-推荐从 [v0.3.3 Release](https://github.com/xinyang20/dsh-campus-seu/releases/tag/v0.3.3) 安装预构建包，无需在用户机器编译：
+推荐从 [v0.3.4 Release](https://github.com/xinyang20/dsh-campus-seu/releases/tag/v0.3.4) 安装预构建包，无需在用户机器编译：
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add https://github.com/xinyang20/dsh-campus-seu/releases/download/v0.3.3/dsh-campus-seu-0.3.3.tgz --ignore-scripts
+dsh plugin --profile YOUR_PROFILE add https://github.com/xinyang20/dsh-campus-seu/releases/download/v0.3.4/dsh-campus-seu-0.3.4.tgz --ignore-scripts
 ```
 
 也可从 GitHub 安装，固定 tag 可避免继续使用旧版本的安装来源：
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add github:xinyang20/dsh-campus-seu#v0.3.3 --ignore-scripts
+dsh plugin --profile YOUR_PROFILE add github:xinyang20/dsh-campus-seu#v0.3.4 --ignore-scripts
 ```
 
 安装后重新启动该 profile 的 DSH Web 并刷新浏览器，在「设置 → 校园主题(SEU)」中调整。校园主题默认启用，叮东默认关闭。
@@ -53,7 +53,7 @@ dsh plugin --profile YOUR_PROFILE add github:xinyang20/dsh-campus-seu#v0.3.3 --i
 也可下载 Release 的 `.tgz` 后安装本地文件：
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add ./dsh-campus-seu-0.3.3.tgz --ignore-scripts
+dsh plugin --profile YOUR_PROFILE add ./dsh-campus-seu-0.3.4.tgz --ignore-scripts
 ```
 
 卸载后同样重新启动 DSH Web：
@@ -62,7 +62,7 @@ dsh plugin --profile YOUR_PROFILE add ./dsh-campus-seu-0.3.3.tgz --ignore-script
 dsh plugin --profile YOUR_PROFILE remove dsh-campus-seu
 ```
 
-升级已安装的旧版时，对同一 profile 执行上面的 Release 或 GitHub tag 安装命令即可替换包；安装后重新启动 DSH Web 并刷新浏览器。通过界面安装时，可填写 `github:xinyang20/dsh-campus-seu#v0.3.3`。
+升级已安装的旧版时，对同一 profile 执行上面的 Release 或 GitHub tag 安装命令即可替换包；安装后重新启动 DSH Web 并刷新浏览器。通过界面安装时，可填写 `github:xinyang20/dsh-campus-seu#v0.3.4`。
 
 ## 使用与数据
 
@@ -98,7 +98,7 @@ pnpm run verify-package
 
 ## 兼容性与验证
 
-本版本通过 `engines.dsh` 声明两个受限的版本范围，两个 DSH 宿主 peer 使用相同范围；Cordis peer 支持 `~4.0.5 || ~4.1.0`。默认开发基线保留 DSH `0.2.1-rc.3` 和 Cordis `4.0.5`，现有 CI 检查 `0.2.1-rc.2`、`0.2.1-rc.3` 的构建、测试和打包。本轮另行使用 DSH `0.2.2-rc.1` / Cordis `4.1.0` 完成实际安装和浏览器验收。`pnpm run verify-package` 可对当前开发运行时检查真实分发包安装、启动、客户端发现和素材认证访问。范围匹配测试不等于对其他宿主版本的实际运行验证。
+插件的 `engines.dsh` 与两个 DSH peer 均包含 `0.2.3-alpha.2`，Cordis peer 支持宿主对应的 `~4.2.0-alpha.1`。此 alpha 版宿主要求 Node.js `^24.22.3 || >=26.13.1`。默认开发基线为 DSH `0.2.1-rc.3`，CI 检查 `0.2.1-rc.2` 与 `0.2.1-rc.3`。`pnpm run verify-package` 可对当前开发运行时检查真实分发包安装、启动、客户端发现和素材认证访问。范围匹配测试不等于对其他宿主版本的实际运行验证。
 
 欢迎卡扩展了 `conversation.hero.brand.mark` 品牌插槽的布局；升级宿主后需重新检查外观。其他插件同时占用该插槽或覆盖相同颜色时，显示受优先级与覆盖顺序影响。仍使用 DSH `0.2.0-rc.2` 时，请安装 [v0.3.0](https://github.com/xinyang20/dsh-campus-seu/releases/tag/v0.3.0)。
 

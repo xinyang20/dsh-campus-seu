@@ -36,10 +36,10 @@ function fixture({ admission = {}, readError } = {}) {
   });
   return {
     reads, admitted,
-    async request(url, method = 'GET') {
+    async request(url, method = 'GET', peer) {
       const req = { url, method };
       const res = response();
-      await handler(req, res);
+      await handler(req, res, peer);
       assert.equal(res.ended, true);
       return { req, res };
     },
@@ -60,6 +60,7 @@ test('the plugin registers a host-compatible prefix covering all bundled assets 
   for (const file of ASSET_FILES) {
     const matched = matchHostRoute(ASSET_PREFIX + file);
     assert.ok(matched, `host prefix must match ${file}`);
+    assert.equal(matched.auth, 'required');
     assert.equal(typeof matched.handler, 'function');
   }
   assert.equal(cleanups.length, 1);
@@ -67,6 +68,14 @@ test('the plugin registers a host-compatible prefix covering all bundled assets 
   cleanups[0]();
   assert.equal(routes.size, 0);
   for (const file of ASSET_FILES) assert.equal(matchHostRoute(ASSET_PREFIX + file), undefined);
+});
+
+test('a peer admitted by WebServer can read assets without repeating admission', async () => {
+  const f = fixture({ admission: new Error('unexpected second admission') });
+  const { res } = await f.request(ASSET_PREFIX + ASSET_FILES[0], 'GET', {});
+  assert.equal(res.status, 200);
+  assert.deepEqual(res.body, ASSET_BYTES);
+  assert.deepEqual(f.admitted, []);
 });
 
 test('host admission rejects access before method handling or reading a file', async () => {

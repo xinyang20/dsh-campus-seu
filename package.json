@@ -1,6 +1,6 @@
 {
   "name": "dsh-campus-seu",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "description": "Southeast University campus theme for DeepSeek Harness Web.",
   "type": "module",
@@ -8,7 +8,7 @@
   "packageManager": "pnpm@10.33.2",
   "engines": {
     "node": "^22.19.0 || >=24.0.0",
-    "dsh": ">=0.2.1-rc.2 <0.2.2-0 || >=0.2.2-rc.1 <0.2.3-0"
+    "dsh": ">=0.2.1-rc.2 <0.2.2-0 || >=0.2.2-rc.1 <0.2.3-0 || 0.2.3-alpha.2"
   },
   "main": "./src/index.js",
   "exports": {
@@ -37,9 +37,9 @@
     "verify-package": "node scripts/verify-package.mjs"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "~4.0.5 || ~4.1.0",
-    "@deepseek-ai/dsh-client-connection": ">=0.2.1-rc.2 <0.2.2-0 || >=0.2.2-rc.1 <0.2.3-0",
-    "@deepseek-ai/dsh-host-webserver": ">=0.2.1-rc.2 <0.2.2-0 || >=0.2.2-rc.1 <0.2.3-0"
+    "@deepseek-ai/cordis": "~4.0.5 || ~4.1.0 || ~4.2.0-alpha.1",
+    "@deepseek-ai/dsh-client-connection": ">=0.2.1-rc.2 <0.2.2-0 || >=0.2.2-rc.1 <0.2.3-0 || 0.2.3-alpha.2",
+    "@deepseek-ai/dsh-host-webserver": ">=0.2.1-rc.2 <0.2.2-0 || >=0.2.2-rc.1 <0.2.3-0 || 0.2.3-alpha.2"
   },
   "devDependencies": {
     "@deepseek-ai/cordis": "4.0.5",

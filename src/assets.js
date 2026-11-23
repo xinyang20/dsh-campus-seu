@@ -12,13 +12,16 @@ export const ASSET_FILES = Object.freeze(Object.keys(ASSET_TYPES));
 
 /** Serve only the bundled campus assets, using the host's browser admission. */
 export function createAssetHandler({ directory, admit, read = readFile }) {
-  return async (req, res) => {
+  return async (req, res, peer) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Cache-Control', 'no-store');
     try {
-      const admission = admit(req);
-      if ('rejection' in admission) {
-        res.writeHead(admission.rejection); res.end(); return;
+      // Newer WebServer versions supply the authenticated peer to required routes.
+      if (!peer) {
+        const admission = admit(req);
+        if ('rejection' in admission) {
+          res.writeHead(admission.rejection); res.end(); return;
+        }
       }
       if (!['GET', 'HEAD'].includes(req.method)) {
         res.writeHead(405, { Allow: 'GET, HEAD' }); res.end(); return;
